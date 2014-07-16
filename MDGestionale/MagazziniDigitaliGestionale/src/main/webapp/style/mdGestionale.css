@@ -1,0 +1,55 @@
+div.header{
+    height: 50px;
+}
+
+div.center{
+  height:auto;
+  margin-bottom:auto;
+  padding-top:7px;
+  overflow:auto;
+}
+
+div.footer{
+  bottom:0;
+  height:50px;
+  position:absolute;
+  width:100%;
+}
+
+.cruscotto{
+    border:solid 3px #00c;
+}
+
+.cwCruscotto{
+    margin: 5px 10px 10px 10px;
+    padding:10px 10px 10px 10px;
+    border: 1px solid #ccf;
+}
+
+.fCruscotto{
+    margin:auto;
+}
+
+.fCruscotto table{
+    margin:auto;
+}
+
+.search{
+    border:solid 3px #00c;
+}
+
+.cwSearch{
+  border:1px solid #CCCCFF;
+  margin:5px auto;
+  min-width:550px;
+  padding:10px;
+  width:550px;
+}
+
+.fSearch{
+    margin:auto;
+}
+
+.fSearch table{
+    margin:auto;
+}

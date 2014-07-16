@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+entryPointModules=it.bncf.magazziniDigitali.tools|it.bncf.magazziniDigitali.tools.graphics|it.bncf.magazziniDigitali.gestionale.index
+filesCopiedToWebInfLib=gwt-servlet.jar

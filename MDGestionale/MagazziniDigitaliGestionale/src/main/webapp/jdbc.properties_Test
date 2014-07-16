@@ -1,0 +1,4 @@
+database.url=jdbc:mysql://192.168.233.154/MEGATECA
+database.driver=com.mysql.jdbc.Driver
+database.user=root
+database.password=G@l@ss1@
