@@ -153,4 +153,6 @@ public interface SearchConstants extends Costanti {
 	String statoINITPUBLISH();
 
 	String statoFINEPUBLISH();
+
+	String modifica_title();
 }

@@ -13,5 +13,6 @@ public interface SearchMessages extends Messaggi {
 
 	String title();
 
-	
+	String msgModifica(String descrizione);
+
 }

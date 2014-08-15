@@ -5,6 +5,8 @@ package it.bncf.magazziniDigitali.gestionale.server;
 
 import java.util.Vector;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @Transactional
 public class SearchServiceImpl extends RemoteServiceServlet implements
 		SearchService {
+
+	/**
+	 * Dati relativi alla connessione Hibernate ricavato dallo Spring
+	 */
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
 	/**
 	 * 
@@ -46,7 +54,7 @@ public class SearchServiceImpl extends RemoteServiceServlet implements
 		OggettoDigitaleBusiness opere = null;
 		Vector<Record> result = null;
 		
-		opere = new OggettoDigitaleBusiness();
+		opere = new OggettoDigitaleBusiness(hibernateTemplate);
 		result = opere.findByNomeFile(idIstituto, nomeFile);
 
 		return result;

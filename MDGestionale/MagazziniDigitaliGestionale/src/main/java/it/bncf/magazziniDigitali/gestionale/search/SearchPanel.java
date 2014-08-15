@@ -26,6 +26,8 @@ import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
+import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
@@ -76,6 +78,7 @@ public class SearchPanel extends CaptionPanel {
 		init();
 		this.getContentWidget().setStyleName("cwSearch",true);
 		searchService = GWT.create(SearchService.class);
+		searchForm.enable();
 //		cruscottoService.findStatus(idIstituto, new CruscottoServiceResult(this));
 //		Scheduler.get().scheduleFixedPeriod(new CruscottoAggiorna(this, cruscottoService, idIstituto),60000);
 	}
@@ -127,22 +130,15 @@ public class SearchPanel extends CaptionPanel {
 //	}
 
 	protected SearchForm getSearchForm() {
-		Vector<FormItem> fields;
 		FormItem[] lFields;
-		int x=0;
 		if (searchForm == null) {
 			searchForm = new SearchForm();
 			searchForm.setSize("550px", "30px");
 			searchForm.setNumCols(6);
-			fields = new Vector<FormItem>();
-			fields.add(getTNomeFile());
-			fields.add(getBSearch());
-			fields.add(getBClear());
-			lFields = new FormItem[fields.size()];
-			for(FormItem field: fields){
-				lFields[x]=field;
-				x++;
-			}
+			lFields = new FormItem[3];
+			lFields[0] =getTNomeFile();
+			lFields[1]=getBSearch();
+			lFields[2]=getBClear();
 			searchForm.setFields(lFields);
 		}
 		return searchForm;
@@ -243,6 +239,17 @@ public class SearchPanel extends CaptionPanel {
 			tNomeFile = new TextItem(costanti.nomeFile(), costanti.nomeFile_title());
 			tNomeFile.setValue("");
 			tNomeFile.setRequired(true);
+			tNomeFile.addKeyPressHandler(new KeyPressHandler() {
+				
+				@Override
+				public void onKeyPress(KeyPressEvent event) {
+					if (event.getCharacterValue()==13 ||
+							event.getCharacterValue()==10){
+						event.cancel();
+						search();
+					}
+				}
+			});
 		}
 		return tNomeFile;
 	}
@@ -259,6 +266,7 @@ public class SearchPanel extends CaptionPanel {
 					search();
 				}
 			});
+			System.out.println("bSearch: "+bSearch);
 		}
 		return bSearch;
 	}

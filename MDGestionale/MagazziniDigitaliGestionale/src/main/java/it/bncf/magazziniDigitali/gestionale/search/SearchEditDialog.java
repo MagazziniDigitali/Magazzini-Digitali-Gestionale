@@ -5,7 +5,7 @@ package it.bncf.magazziniDigitali.gestionale.search;
 
 import it.bncf.magazziniDigitali.tools.graphics.EditDialog;
 
-import java.util.Date;
+//import java.util.Date;
 
 import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.Record;
@@ -127,10 +127,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.nomeFileMod())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.nomeFileMod())));
-				dtNomeFileMod.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.nomeFileMod())));
+				dtNomeFileMod.setValue(record.getAttributeAsString(costanti
+						.nomeFileMod()));
 			}
 			dtNomeFileMod.setWidth("*");
 		}
@@ -193,10 +194,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.trasfDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.trasfDataStart())));
-				dtTrasfDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.trasfDataStart())));
+				dtTrasfDataStart.setValue(record.getAttributeAsString(costanti
+						.trasfDataStart()));
 			}
 			dtTrasfDataStart.setWidth("*");
 		}
@@ -213,10 +215,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.trasfDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.trasfDataEnd())));
-				dtTrasfDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.trasfDataEnd())));
+				dtTrasfDataEnd.setValue(record.getAttributeAsString(costanti
+						.trasfDataEnd()));
 			}
 			dtTrasfDataEnd.setWidth("*");
 		}
@@ -251,10 +254,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.validateDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.validateDataStart())));
-				dtValidateDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.validateDataStart())));
+				dtValidateDataStart.setValue(record.getAttributeAsString(costanti
+						.validateDataStart()));
 			}
 			dtValidateDataStart.setWidth("*");
 		}
@@ -271,10 +275,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.validateDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.validateDataEnd())));
-				dtValidateDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.validateDataEnd())));
+				dtValidateDataEnd.setValue(record.getAttributeAsString(costanti
+						.validateDataEnd()));
 			}
 			dtValidateDataEnd.setWidth("*");
 		}
@@ -309,10 +314,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.decompDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.decompDataStart())));
-				dtDecompDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.decompDataStart())));
+				dtDecompDataStart.setValue(record.getAttributeAsString(costanti
+						.decompDataStart()));
 			}
 			dtDecompDataStart.setWidth("*");
 		}
@@ -329,10 +335,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.decompDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.decompDataEnd())));
-				dtDecompDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.decompDataEnd())));
+				dtDecompDataEnd.setValue(record.getAttributeAsString(costanti
+						.decompDataEnd()));
 			}
 			dtDecompDataEnd.setWidth("*");
 		}
@@ -367,10 +374,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.publishDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.publishDataStart())));
-				dtPublishDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.publishDataStart())));
+				dtPublishDataStart.setValue(record.getAttributeAsString(costanti
+						.publishDataStart()));
 			}
 			dtPublishDataStart.setWidth("*");
 		}
@@ -387,10 +395,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.publishDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.publishDataEnd())));
-				dtPublishDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.publishDataEnd())));
+				dtPublishDataEnd.setValue(record.getAttributeAsString(costanti
+						.publishDataEnd()));
 			}
 			dtPublishDataEnd.setWidth("*");
 		}
@@ -425,10 +434,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.copyPremisDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.copyPremisDataStart())));
-				dtCopyPremisDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.copyPremisDataStart())));
+				dtCopyPremisDataStart.setValue(record.getAttributeAsString(costanti
+						.copyPremisDataStart()));
 			}
 			dtCopyPremisDataStart.setWidth("*");
 		}
@@ -445,10 +455,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.copyPremisDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.copyPremisDataEnd())));
-				dtCopyPremisDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.copyPremisDataEnd())));
+				dtCopyPremisDataEnd.setValue(record.getAttributeAsString(costanti
+						.copyPremisDataEnd()));
 			}
 			dtCopyPremisDataEnd.setWidth("*");
 		}
@@ -483,10 +494,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.moveFileDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.moveFileDataStart())));
-				dtMoveFileDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.moveFileDataStart())));
+				dtMoveFileDataStart.setValue(record.getAttributeAsString(costanti
+						.moveFileDataStart()));
 			}
 			dtMoveFileDataStart.setWidth("*");
 		}
@@ -503,10 +515,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.moveFileDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.moveFileDataEnd())));
-				dtMoveFileDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.moveFileDataEnd())));
+				dtMoveFileDataEnd.setValue(record.getAttributeAsString(costanti
+						.moveFileDataEnd()));
 			}
 			dtMoveFileDataEnd.setWidth("*");
 		}
@@ -541,10 +554,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.deleteLocalDataStart())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.deleteLocalDataStart())));
-				dtDeleteLocalDataStart.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.deleteLocalDataStart())));
+				dtDeleteLocalDataStart.setValue(record.getAttributeAsString(costanti
+						.deleteLocalDataStart()));
 			}
 			dtDeleteLocalDataStart.setWidth("*");
 		}
@@ -561,10 +575,11 @@ public class SearchEditDialog extends
 			if (record != null &&
 					record.getAttributeAsString(costanti
 							.deleteLocalDataEnd())!=null) {
-				Date date=null;
-				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
-						.deleteLocalDataEnd())));
-				dtDeleteLocalDataEnd.setValue(date);
+//				Date date=null;
+//				date = new Date(Long.parseLong(record.getAttributeAsString(costanti
+//						.deleteLocalDataEnd())));
+				dtDeleteLocalDataEnd.setValue(record.getAttributeAsString(costanti
+						.deleteLocalDataEnd()));
 			}
 			dtDeleteLocalDataEnd.setWidth("*");
 		}
