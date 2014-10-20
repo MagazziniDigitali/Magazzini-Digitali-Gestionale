@@ -3,11 +3,9 @@
  */
 package it.bncf.magazziniDigitali.gestionale.search;
 
+import it.bncf.magazziniDigitali.tools.graphics.ButtonSave;
 import it.bncf.magazziniDigitali.tools.graphics.EditDialog;
 
-//import java.util.Date;
-
-import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DateDisplayFormat;
@@ -15,6 +13,11 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.DateTimeItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
+import com.smartgwt.client.widgets.form.fields.events.ClickEvent;
+import com.smartgwt.client.widgets.form.fields.events.ClickHandler;
+//import java.util.Date;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 
 /**
  * @author massi
@@ -27,6 +30,7 @@ public class SearchEditDialog extends
 
 	private TextItem tNomeFile;
 	private DateTimeItem dtNomeFileMod;
+	private String stato = null;
 	private TextItem tStato;
 
 	private DateTimeItem dtTrasfDataStart;
@@ -60,6 +64,8 @@ public class SearchEditDialog extends
 	private TextItem tDeleteLocalEsito;
 
 	private TextItem tPremisFile;
+	
+	private ButtonSave bDownloadFile;
 	
 	public SearchEditDialog(SearchPanel parent, Record record) {
 		super(parent, record);
@@ -95,7 +101,7 @@ public class SearchEditDialog extends
 					getDtMoveFileDataStart(), getDtMoveFileDataEnd(), getTMoveFileEsito(), 
 					getDtPublishDataStart(), getDtPublishDataEnd(), getTPublishEsito(), 
 					getDtDeleteLocalDataStart(), getDtDeleteLocalDataEnd(), getTDeleteLocalEsito(), 
-					getTXmlMimeType(), getTPremisFile()
+					getTXmlMimeType(), getTPremisFile(), getbDownloadFile()
 					});
 
 		}
@@ -139,42 +145,42 @@ public class SearchEditDialog extends
 	}
 
 	private TextItem getTStato() {
+		String stato = "";
 		if (tStato == null) {
 			tStato = new TextItem(costanti.stato(),
 					costanti.stato_title());
 			tStato.setDisabled(true);
 			tStato.setShowDisabled(false);
 			if (record != null) {
-				String stato = null;
-				stato = record.getAttributeAsString(costanti
+				this.stato = record.getAttributeAsString(costanti
 						.stato());
-				if (stato.equals("INITTRASF")){
+				if (this.stato.equals("INITTRASF")){
 					stato = costanti.statoINITTRASF();
-				} else if (stato.equals("FINETRASF")){
+				} else if (this.stato.equals("FINETRASF")){
 					stato = costanti.statoFINETRASF();
-				} else if (stato.equals("ERROR")){
+				} else if (this.stato.equals("ERROR")){
 					stato = costanti.statoERROR();
-				} else if (stato.equals("ERRORTRASF")){
+				} else if (this.stato.equals("ERRORTRASF")){
 					stato = costanti.statoERRORTRASF();
-				} else if (stato.equals("ERRORVAL")){
+				} else if (this.stato.equals("ERRORVAL")){
 					stato = costanti.statoERRORVAL();
-				} else if (stato.equals("ERRORDECOMP")){
+				} else if (this.stato.equals("ERRORDECOMP")){
 					stato = costanti.statoERRORDECOMP();
-				} else if (stato.equals("ERRORCOPY")){
+				} else if (this.stato.equals("ERRORCOPY")){
 					stato = costanti.statoERRORCOPY();
-				} else if (stato.equals("ERRORMOVE")){
+				} else if (this.stato.equals("ERRORMOVE")){
 					stato = costanti.statoERRORMOVE();
-				} else if (stato.equals("ERRORPUB")){
+				} else if (this.stato.equals("ERRORPUB")){
 					stato = costanti.statoERRORPUB();
-				} else if (stato.equals("ERRORDELETE")){
+				} else if (this.stato.equals("ERRORDELETE")){
 					stato = costanti.statoERRORDELETE();
-				} else if (stato.equals("INITVALID")){
+				} else if (this.stato.equals("INITVALID")){
 					stato = costanti.statoINITVALID();
-				} else if (stato.equals("FINEVALID")){
+				} else if (this.stato.equals("FINEVALID")){
 					stato = costanti.statoFINEVALID();
-				} else if (stato.equals("INITPUBLISH")){
+				} else if (this.stato.equals("INITPUBLISH")){
 					stato = costanti.statoINITPUBLISH();
-				} else if (stato.equals("FINEPUBLISH")){
+				} else if (this.stato.equals("FINEPUBLISH")){
 					stato = costanti.statoFINEPUBLISH();
 				}
 				tStato.setValue(stato);
@@ -648,6 +654,38 @@ public class SearchEditDialog extends
 
 	@Override
 	protected void initEditDialog() {
+	}
+
+	public ButtonSave getbDownloadFile() {
+		if (bDownloadFile == null) {
+			bDownloadFile = new ButtonSave(costanti.bDownloadFile(),
+					costanti.bDownloadFile_title());
+			if (!stato.equals("FINEPUBLISH")){
+				bDownloadFile.setDisabled(true);
+			} else {
+				bDownloadFile.setDisabled(false);
+				bDownloadFile.addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						String url = GWT.getModuleBaseURL() + "downloadService?file=" + record.getAttributeAsString(costanti
+								.premisFile()).replace(".premis", "")+
+								"&Istituto="+Window.Location.getParameter("idIstituto")+
+								"&fileOri="+record.getAttributeAsString(costanti
+										.nomeFile()).replace(".tar.gz", ".tar").replace(".tgz", ".tar");
+						Window.open( url, "_blank", "status=0,toolbar=0,menubar=0,location=0");
+					}
+				});
+			}
+//			bDownloadFile.setShowDisabled(false);
+			bDownloadFile.setColSpan(6);
+//			if (record != null) {
+//				bDownloadFile.setValue(record.getAttributeAsString(costanti
+//						.premisFile()));
+//			}
+//			bDownloadFile.setWidth("*");
+		}
+		return bDownloadFile;
 	}
 
 }

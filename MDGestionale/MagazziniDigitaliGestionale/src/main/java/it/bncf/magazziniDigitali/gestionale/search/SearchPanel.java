@@ -151,8 +151,9 @@ public class SearchPanel extends CaptionPanel {
 
 		if (gCenter == null) {
 			gCenter = new ListGrid();
-			gCenter.setWidth("550px");
+			gCenter.setWidth("97%");
 			gCenter.setHeight("300px");
+			gCenter.setAlign(Alignment.CENTER);
 			fields = new Vector<ListGridField>();
 			if (rchModifica != null){
 				fields.add(getModifica());
@@ -243,8 +244,9 @@ public class SearchPanel extends CaptionPanel {
 				
 				@Override
 				public void onKeyPress(KeyPressEvent event) {
-					if (event.getCharacterValue()==13 ||
-							event.getCharacterValue()==10){
+					if (event.getCharacterValue() != null && 
+							(event.getCharacterValue()==13 ||
+							event.getCharacterValue()==10)){
 						event.cancel();
 						search();
 					}

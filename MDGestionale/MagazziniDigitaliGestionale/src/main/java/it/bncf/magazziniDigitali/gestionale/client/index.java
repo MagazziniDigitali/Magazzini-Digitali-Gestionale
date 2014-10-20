@@ -12,6 +12,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -20,6 +21,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class index implements EntryPoint {
 	
 	private RootPanel center;
+	
+	private RootPanel header;
 
 	private CruscottoServiceAsync cruscottoService = null;
 
@@ -44,6 +47,7 @@ public class index implements EntryPoint {
 
 		
 		center = RootPanel.get("center");
+		header = RootPanel.get("header");
 		cruscottoService = GWT.create(CruscottoService.class);
 		costanti = GWT.create(IndexConstants.class);
 		messaggi = GWT.create(IndexMessages.class);
@@ -55,10 +59,25 @@ public class index implements EntryPoint {
 				@Override
 				public void onSuccess(TreeMap<String, Object> result) {
 					CruscottoPanel cruscottoPanel = null;
+					CaptionPanel cpIstituto = null;
+					CaptionPanel cpUrlIstituto = null;
 					SearchPanel searchPanel = null;
 					String msg = null;
 
 					if (result.get("ERROR")==null){
+						cpIstituto = new CaptionPanel();
+						cpIstituto.setStyleName("titleIstituto");
+						cpIstituto.setCaptionHTML(messaggi.titleIstituto((String) result.get("Nome")));;
+						header.add(cpIstituto);
+
+						cpUrlIstituto = new CaptionPanel();
+						cpUrlIstituto.setStylePrimaryName("urlIstituto");
+						cpUrlIstituto.setCaptionHTML("<a href=\""+
+								(String) result.get("Url")+"\">"
+										+ "<img class=\"urlIstituto\" src=\""+
+								(String) result.get("Logo")+"\"/></a>");
+						header.add(cpUrlIstituto);
+
 						cruscottoPanel = new CruscottoPanel(idIstituto, 
 								(String) result.get("Nome"),
 								(String)result.get("IpClient"));

@@ -49,7 +49,7 @@ public class CruscottoPanel extends CaptionPanel {
 		messagi = GWT.create(CruscottoMessages.class);
 		costanti = GWT.create(CruscottoConstants.class);
 		cruscottoService = GWT.create(CruscottoService.class);
-		this.setCaptionText(messagi.title(nomeIstituto, ipClient));
+		this.setCaptionText(messagi.title());
 
 		this.getElement().setClassName("cruscotto");
 		init();
@@ -328,8 +328,8 @@ class CruscottoAggiorna implements RepeatingCommand{
 		
 		cruscottoService.findStatus(idIstituto, new CruscottoServiceResult(cruscottoPanel));
 
-		Integer i = cruscottoPanel.getInitTrasf().getValueAsInteger();
-		cruscottoPanel.getInitTrasf().setValue(i+1);
+//		Integer i = cruscottoPanel.getInitTrasf().getValueAsInteger();
+//		cruscottoPanel.getInitTrasf().setValue(i+1);
 		return true;
 	}
 
@@ -352,19 +352,28 @@ class CruscottoServiceResult implements AsyncCallback<TreeMap<String, Integer>>{
 	@Override
 	public void onSuccess(TreeMap<String, Integer> result) {
 
-		parent.getInitTrasf().setValue((result.get("INITTRASF")!= null?result.get("INITTRASF").intValue():0));
-		parent.getFineTrasf().setValue((result.get("FINETRASF")!= null?result.get("FINETRASF").intValue():0));
-		parent.getInitValid().setValue((result.get("INITVALID")!= null?result.get("INITVALID").intValue():0));
-		parent.getFineValid().setValue((result.get("FINEVALID")!= null?result.get("FINEVALID").intValue():0));
-		parent.getInitPublish().setValue((result.get("INITPUBLISH")!= null?result.get("INITPUBLISH").intValue():0));
-		parent.getFinePublish().setValue((result.get("FINEPUBLISH")!= null?result.get("FINEPUBLISH").intValue():0));
-		parent.getErrorTrasf().setValue((result.get("ERRORTRASF")!= null?result.get("ERRORTRASF").intValue():0));
-		parent.getErrorVal().setValue((result.get("ERRORVAL")!= null?result.get("ERRORVAL").intValue():0));
-		parent.getErrorDecomp().setValue((result.get("ERRORDECOMP")!= null?result.get("ERRORDECOMP").intValue():0));
-		parent.getErrorCopy().setValue((result.get("ERRORCOPY")!= null?result.get("ERRORCOPY").intValue():0));
-		parent.getErrorMove().setValue((result.get("ERRORMOVE")!= null?result.get("ERRORMOVE").intValue():0));
-		parent.getErrorPub().setValue((result.get("ERRORPUB")!= null?result.get("ERRORPUB").intValue():0));
-		parent.getErrorDelete().setValue((result.get("ERRORDELETE")!= null?result.get("ERRORDELETE").intValue():0));
+		setIntValue(parent.getInitTrasf(),result.get("INITTRASF"),"tbArancione");
+		setIntValue(parent.getFineTrasf(),result.get("FINETRASF"),"tbGiallo");
+		setIntValue(parent.getInitValid(),result.get("INITVALID"),"tbArancione");
+		setIntValue(parent.getFineValid(),result.get("FINEVALID"),"tbGiallo");
+		setIntValue(parent.getInitPublish(),result.get("INITPUBLISH"),"tbArancione");
+		setIntValue(parent.getFinePublish(),result.get("FINEPUBLISH"),"tbVerde");
+		setIntValue(parent.getErrorTrasf(),result.get("ERRORTRASF"),"tbRosso");
+		setIntValue(parent.getErrorVal(),result.get("ERRORVAL"),"tbRosso");
+		setIntValue(parent.getErrorDecomp(),result.get("ERRORDECOMP"),"tbRosso");
+		setIntValue(parent.getErrorCopy(),result.get("ERRORCOPY"),"tbRosso");
+		setIntValue(parent.getErrorMove(),result.get("ERRORMOVE"),"tbRosso");
+		setIntValue(parent.getErrorPub(),result.get("ERRORPUB"),"tbRosso");
+		setIntValue(parent.getErrorDelete(),result.get("ERRORDELETE"),"tbRosso");
 	}
-	
+
+	private void setIntValue(IntegerItem campo, Integer value, String style){
+		if (value ==null){
+			campo.setValue(0);
+			campo.setTextBoxStyle("");
+		} else {
+			campo.setValue(value.intValue());
+			campo.setTextBoxStyle(style);
+		}
+	}
 }

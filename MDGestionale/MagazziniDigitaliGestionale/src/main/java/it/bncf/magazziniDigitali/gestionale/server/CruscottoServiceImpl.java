@@ -103,6 +103,8 @@ public class CruscottoServiceImpl extends RemoteServiceServlet implements
 
 		if (Configuration.getValue("istituto."+idIstituto+".nome")!= null){
 			ris.put("Nome", Configuration.getValue("istituto."+idIstituto+".nome"));
+			ris.put("Url", Configuration.getValue("istituto."+idIstituto+".url"));
+			ris.put("Logo", Configuration.getValue("istituto."+idIstituto+".urlLogo"));
 			if (Configuration.getValue("istituto."+idIstituto+".ipAuthentication")!= null){
 				st = Configuration.getValue("istituto."+idIstituto+".ipAuthentication").split(",");
 				for(int x=0; x<st.length; x++){

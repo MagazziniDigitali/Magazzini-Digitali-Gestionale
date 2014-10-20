@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Magazzini Digitali - Gestionale</display-name>
+
+  <!-- Definizione della Servlet utilizzata per eseguire il Download dei files sui Client -->
+  <servlet>
+    <servlet-name>downloadService</servlet-name>
+    <servlet-class>it.bncf.magazziniDigitali.gestionale.server.DownloadServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>downloadService</servlet-name>
+    <url-pattern>/index/downloadService</url-pattern>
+  </servlet-mapping>
+  <!-- Fine Definizione -->
+
   <servlet>
     <servlet-name>springGwtRemoteServiceServlet</servlet-name>
     <servlet-class>org.spring4gwt.server.SpringGwtRemoteServiceServlet</servlet-class>

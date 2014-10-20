@@ -18,4 +18,6 @@ public interface IndexMessages extends Messages {
 	String ipNotFound(String nomeIstituto);
 
 	String istitutoNotFound(String idIstituto);
+	
+	String titleIstituto(String nomeIstituto);
 }

@@ -126,6 +126,10 @@ public interface SearchConstants extends Costanti {
 	String premisFile();
 	String premisFile_title();
 
+	@DefaultStringValue("bDownloadFile")
+	String bDownloadFile();
+	String bDownloadFile_title();
+
 	String statoINITTRASF();
 
 	String statoFINETRASF();
@@ -155,4 +159,5 @@ public interface SearchConstants extends Costanti {
 	String statoFINEPUBLISH();
 
 	String modifica_title();
+
 }

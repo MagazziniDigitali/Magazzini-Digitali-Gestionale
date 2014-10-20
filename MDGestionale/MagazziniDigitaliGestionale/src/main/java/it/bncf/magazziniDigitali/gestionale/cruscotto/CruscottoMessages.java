@@ -11,7 +11,7 @@ import com.google.gwt.i18n.client.Messages;
  */
 public interface CruscottoMessages extends Messages {
 
-	String title(String istituto, String ipClient);
+	String title();
 
 	
 }
