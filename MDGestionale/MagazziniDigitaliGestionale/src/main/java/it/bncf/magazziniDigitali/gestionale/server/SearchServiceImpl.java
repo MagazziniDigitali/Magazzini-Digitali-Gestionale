@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.bncf.magazziniDigitali.businessLogic.oggettoDigitale.OggettoDigitaleBusiness;
+import it.bncf.magazziniDigitali.database.dao.MDIstituzioneDAO;
+import it.bncf.magazziniDigitali.database.entity.MDIstituzione;
 import it.bncf.magazziniDigitali.gestionale.search.SearchService;
 import it.bncf.magazziniDigitali.utils.Record;
 
@@ -53,10 +55,13 @@ public class SearchServiceImpl extends RemoteServiceServlet implements
 			throws Exception {
 		OggettoDigitaleBusiness opere = null;
 		Vector<Record> result = null;
+		MDIstituzioneDAO mdIstituzioneDAO = null;
+		MDIstituzione mdIstituzione = null;
 		
+		mdIstituzioneDAO = new MDIstituzioneDAO(hibernateTemplate);
+		mdIstituzione = mdIstituzioneDAO.findById(idIstituto);
 		opere = new OggettoDigitaleBusiness(hibernateTemplate);
-		result = opere.findByNomeFile(idIstituto, nomeFile);
-
+		result = opere.findByNomeFile(mdIstituzione, nomeFile);
 		return result;
 	}
 

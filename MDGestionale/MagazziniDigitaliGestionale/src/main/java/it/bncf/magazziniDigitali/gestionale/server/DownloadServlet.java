@@ -3,7 +3,9 @@
  */
 package it.bncf.magazziniDigitali.gestionale.server;
 
-import it.bncf.magazziniDigitali.businessLogic.oggettoDigitale.implement.OggettoDigitalePublish;
+import it.bncf.magazziniDigitali.database.dao.MDIstituzioneDAO;
+import it.bncf.magazziniDigitali.database.entity.MDIstituzione;
+import it.bncf.magazziniDigitali.utils.GenFileDest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,6 +14,7 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -73,7 +76,7 @@ public class DownloadServlet extends HttpServlet {
 			if (checkIP(req)){
 				file = req.getParameter("file");
 	
-				fObjNew = OggettoDigitalePublish.genFileDest(file);
+				fObjNew = GenFileDest.genFileDest(Configuration.getValue("demoni.Publish.pathStorage"), file);
 	
 				if (fObjNew.exists()) {
 					try {
@@ -163,7 +166,7 @@ public class DownloadServlet extends HttpServlet {
 		page += "<div id=\"center\" class=\"center\">";
 		page += msg;
 		page += "</div>\n";
-		page += "<div id=\"footer\" class=\"footer\">&copy; Magazzini digitali 2014<br/>Ver. 1.0.1</div>\n";
+		page += "<div id=\"footer\" class=\"footer\">&copy; Magazzini digitali 2014<br/>Ver. 1.0.3</div>\n";
 		page += "</body>\n";
 		page += "</html>\n";
 		return page;
@@ -176,6 +179,8 @@ public class DownloadServlet extends HttpServlet {
 		String[] st;
 		String[] stAuthor;
 		boolean found = false;
+		MDIstituzioneDAO mdIstituzioneDAO = null;
+		MDIstituzione mdIstituzione = null;
 
 		try {
 			if (request.getHeader("x-forwarded-for") != null) {
@@ -186,26 +191,34 @@ public class DownloadServlet extends HttpServlet {
 			ip = address.getHostAddress();
 
 			stClient = ip.split("\\.");
-			if (Configuration.getValue("istituto."+request.getParameter("Istituto")+".ipDownload")!= null){
-				st = Configuration.getValue("istituto."+request.getParameter("Istituto")+".ipDownload").split(",");
-				for(int x=0; x<st.length; x++){
-					stAuthor = st[x].split("\\.");
-					if ((stAuthor[0].equals("*")||
-							stAuthor[0].equals(stClient[0])) &&
-						(stAuthor[1].equals("*")||
-								stAuthor[1].equals(stClient[1])) &&
-						(stAuthor[2].equals("*")||
-								stAuthor[2].equals(stClient[2])) &&
-						(stAuthor[3].equals("*")||
-								stAuthor[3].equals(stClient[3]))){
-						found = true;
-						break;
+			mdIstituzioneDAO = new MDIstituzioneDAO(hibernateTemplate);
+			mdIstituzione = mdIstituzioneDAO.findById(request.getParameter("Istituto"));
+			if (mdIstituzione != null){
+				if (mdIstituzione.getIpDownload()!= null && !mdIstituzione.getIpDownload().trim().equals("")){
+					st = mdIstituzione.getIpDownload().trim().split(",");
+					for(int x=0; x<st.length; x++){
+						stAuthor = st[x].split("\\.");
+						if ((stAuthor[0].equals("*")||
+								stAuthor[0].equals(stClient[0])) &&
+							(stAuthor[1].equals("*")||
+									stAuthor[1].equals(stClient[1])) &&
+							(stAuthor[2].equals("*")||
+									stAuthor[2].equals(stClient[2])) &&
+							(stAuthor[3].equals("*")||
+									stAuthor[3].equals(stClient[3]))){
+							found = true;
+							break;
+						}
 					}
 				}
 			}
 		} catch (UnknownHostException e) {
 			throw new ServletException(e.getMessage(), e);
 		} catch (ConfigurationException e) {
+			throw new ServletException(e.getMessage(), e);
+		} catch (HibernateException e) {
+			throw new ServletException(e.getMessage(), e);
+		} catch (NamingException e) {
 			throw new ServletException(e.getMessage(), e);
 		}
 		return found;

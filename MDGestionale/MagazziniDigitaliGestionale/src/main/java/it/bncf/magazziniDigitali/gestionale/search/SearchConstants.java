@@ -27,7 +27,7 @@ public interface SearchConstants extends Costanti {
 	String nomeFileMod();
 	String nomeFileMod_title();
 
-	@DefaultStringValue("stato")
+	@DefaultStringValue("idStato")
 	String stato();
 	String stato_title();
 

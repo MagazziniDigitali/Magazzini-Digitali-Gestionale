@@ -40,8 +40,13 @@
         </property>
         <property name="mappingResources">
             <list>
+                <value>it/bncf/magazziniDigitali/database/entity/MDStato.hbm.xml</value>
+                <value>it/bncf/magazziniDigitali/database/entity/MDArchive.hbm.xml</value>
+                <value>it/bncf/magazziniDigitali/database/entity/MDClient.hbm.xml</value>
                 <value>it/bncf/magazziniDigitali/database/entity/MDFilesTmp.hbm.xml</value>
                 <value>it/bncf/magazziniDigitali/database/entity/MDFilesTmpError.hbm.xml</value>
+                <value>it/bncf/magazziniDigitali/database/entity/MDIstituzione.hbm.xml</value>
+                <value>it/bncf/magazziniDigitali/database/entity/MDNodi.hbm.xml</value>
                 <value>it/bncf/magazziniDigitali/database/entity/MDRegistroIngresso.hbm.xml</value>
                 <value>it/bncf/magazziniDigitali/database/entity/MDRegistroIngressoError.hbm.xml</value>
             </list>

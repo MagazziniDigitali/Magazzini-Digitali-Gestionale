@@ -268,7 +268,6 @@ public class SearchPanel extends CaptionPanel {
 					search();
 				}
 			});
-			System.out.println("bSearch: "+bSearch);
 		}
 		return bSearch;
 	}

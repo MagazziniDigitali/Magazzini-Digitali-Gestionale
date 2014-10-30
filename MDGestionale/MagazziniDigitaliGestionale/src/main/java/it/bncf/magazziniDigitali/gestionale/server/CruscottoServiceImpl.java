@@ -4,6 +4,8 @@
 package it.bncf.magazziniDigitali.gestionale.server;
 
 import it.bncf.magazziniDigitali.businessLogic.oggettoDigitale.OggettoDigitaleBusiness;
+import it.bncf.magazziniDigitali.database.dao.MDIstituzioneDAO;
+import it.bncf.magazziniDigitali.database.entity.MDIstituzione;
 import it.bncf.magazziniDigitali.gestionale.cruscotto.CruscottoService;
 
 import java.net.InetAddress;
@@ -57,9 +59,13 @@ public class CruscottoServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public TreeMap<String, Integer> findStatus(String idIstituto) throws Exception {
 		OggettoDigitaleBusiness odb = null;
+		MDIstituzioneDAO mdIstituzioneDAO = null;
+		MDIstituzione mdIstituzione = null;
 		
 		odb = new OggettoDigitaleBusiness(hibernateTemplate);
-		return odb.findStatus(idIstituto);
+		mdIstituzioneDAO = new MDIstituzioneDAO(hibernateTemplate);
+		mdIstituzione = mdIstituzioneDAO.findById(idIstituto);
+		return odb.findStatus(mdIstituzione);
 	}
 
 	@Override
@@ -73,6 +79,8 @@ public class CruscottoServiceImpl extends RemoteServiceServlet implements
 		String[] stClient = null;
 		String[] stAuthor = null;
 		HttpServletRequest request = null;
+		MDIstituzioneDAO mdIstituzioneDAO = null;
+		MDIstituzione mdIstituzione = null;
 
 		request = this.getThreadLocalRequest();
 		//getThreadLocalRequest();
@@ -101,12 +109,14 @@ public class CruscottoServiceImpl extends RemoteServiceServlet implements
         ris = new TreeMap<String, Object>();
 		ris.put("IpClient", ip);
 
-		if (Configuration.getValue("istituto."+idIstituto+".nome")!= null){
-			ris.put("Nome", Configuration.getValue("istituto."+idIstituto+".nome"));
-			ris.put("Url", Configuration.getValue("istituto."+idIstituto+".url"));
-			ris.put("Logo", Configuration.getValue("istituto."+idIstituto+".urlLogo"));
-			if (Configuration.getValue("istituto."+idIstituto+".ipAuthentication")!= null){
-				st = Configuration.getValue("istituto."+idIstituto+".ipAuthentication").split(",");
+		mdIstituzioneDAO = new MDIstituzioneDAO(hibernateTemplate);
+		mdIstituzione = mdIstituzioneDAO.findById(idIstituto);
+		if (mdIstituzione!= null){
+			ris.put("Nome", mdIstituzione.getNome());
+			ris.put("Url", mdIstituzione.getUrl());
+			ris.put("Logo", mdIstituzione.getUrlLogo());
+			if (mdIstituzione.getIpAuthentication()!= null && !mdIstituzione.getIpAuthentication().trim().equals("")){
+				st = mdIstituzione.getIpAuthentication().trim().split(",");
 				for(int x=0; x<st.length; x++){
 					stAuthor = st[x].split("\\.");
 					if ((stAuthor[0].equals("*")||
