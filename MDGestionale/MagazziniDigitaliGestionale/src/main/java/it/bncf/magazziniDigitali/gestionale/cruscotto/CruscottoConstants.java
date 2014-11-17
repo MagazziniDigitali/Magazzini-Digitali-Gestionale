@@ -35,6 +35,34 @@ public interface CruscottoConstants extends Constants {
 	String finePublish();
 	String finePublish_title();
 
+	@DefaultStringValue("initArchive")
+	String initArchive();
+	String initArchive_title();
+
+	@DefaultStringValue("fineArchive")
+	String fineArchive();
+	String fineArchive_title();
+
+	@DefaultStringValue("errorArchive")
+	String errorArchive();
+	String errorArchive_title();
+
+	@DefaultStringValue("initIndex")
+	String initIndex();
+	String initIndex_title();
+
+	@DefaultStringValue("checkIndex")
+	String checkIndex();
+	String checkIndex_title();
+
+	@DefaultStringValue("fineIndex")
+	String fineIndex();
+	String fineIndex_title();
+
+	@DefaultStringValue("errorIndex")
+	String errorIndex();
+	String errorIndex_title();
+
 	@DefaultStringValue("errorTrasf")
 	String errorTrasf();
 	String errorTrasf_title();

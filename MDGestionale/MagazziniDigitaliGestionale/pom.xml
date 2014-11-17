@@ -11,13 +11,15 @@
     </parent>
   <artifactId>MagazziniDigitaliGestionale</artifactId>
   <packaging>war</packaging>
-  <version>1.0.3</version>
+  <version>1.0.5</version>
   <name>MDRicerca</name>
   
   <properties>
     <!-- Convenience property to set the GWT version -->
     <gwtVersion>2.6.0</gwtVersion>
-    <!--  gwtVersion>2.5.1</gwtVersion -->
+    <!-- 
+    <gwtVersion>2.5.1</gwtVersion>
+     -->
 
     <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -234,7 +236,7 @@
     <dependency>
     	<groupId>it.bncf.magazziniDigitali.businessLogic</groupId>
     	<artifactId>MagazziniDigitaliBusinessLogic</artifactId>
-    	<version>1.0.20</version>
+    	<version>1.0.29</version>
     </dependency>
     <dependency>
     	<groupId>com.smartgwt</groupId>

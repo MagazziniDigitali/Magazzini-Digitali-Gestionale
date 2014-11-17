@@ -166,7 +166,7 @@ public class DownloadServlet extends HttpServlet {
 		page += "<div id=\"center\" class=\"center\">";
 		page += msg;
 		page += "</div>\n";
-		page += "<div id=\"footer\" class=\"footer\">&copy; Magazzini digitali 2014<br/>Ver. 1.0.3</div>\n";
+		page += "<div id=\"footer\" class=\"footer\">&copy; Magazzini digitali 2014<br/>Ver. 1.0.5</div>\n";
 		page += "</body>\n";
 		page += "</html>\n";
 		return page;

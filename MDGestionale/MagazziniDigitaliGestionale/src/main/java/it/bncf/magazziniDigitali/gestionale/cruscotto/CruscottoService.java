@@ -3,8 +3,6 @@
  */
 package it.bncf.magazziniDigitali.gestionale.cruscotto;
 
-import it.bncf.magazziniDigitali.database.entity.MDIstituzione;
-
 import java.util.TreeMap;
 
 import com.google.gwt.user.client.rpc.RemoteService;

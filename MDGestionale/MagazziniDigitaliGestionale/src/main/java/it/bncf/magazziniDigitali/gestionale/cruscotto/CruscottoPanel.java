@@ -30,6 +30,11 @@ public class CruscottoPanel extends CaptionPanel {
 	private IntegerItem fineValid = null;
 	private IntegerItem initPublish = null;
 	private IntegerItem finePublish = null;
+	private IntegerItem initArchive = null;
+	private IntegerItem fineArchive = null;
+	private IntegerItem initIndex = null;
+	private IntegerItem checkIndex = null;
+	private IntegerItem fineIndex = null;
 	private IntegerItem errorTrasf = null;
 	private IntegerItem errorVal = null;
 	private IntegerItem errorDecomp = null;
@@ -37,6 +42,8 @@ public class CruscottoPanel extends CaptionPanel {
 	private IntegerItem errorMove = null;
 	private IntegerItem errorPub = null;
 	private IntegerItem errorDelete = null;
+	private IntegerItem errorArchive = null;
+	private IntegerItem errorIndex = null;
 
 	private CruscottoServiceAsync cruscottoService = null;
 
@@ -70,7 +77,7 @@ public class CruscottoPanel extends CaptionPanel {
 		sf.setColWidths("*,105, *,105, *,105, *,105, *,105");
 		sf.setNumCols(10);
 		
-		fields = new FormItem[13];
+		fields = new FormItem[20];
 		
 		fields[0] = getInitTrasf();
 		fields[1] = getFineTrasf();
@@ -78,13 +85,20 @@ public class CruscottoPanel extends CaptionPanel {
 		fields[3] = getFineValid();
 		fields[4] = getInitPublish();
 		fields[5] = getFinePublish();
-		fields[6] = getErrorTrasf();
-		fields[7] = getErrorVal();
-		fields[8] = getErrorDecomp();
-		fields[9] = getErrorCopy();
-		fields[10] = getErrorMove();
-		fields[11] = getErrorPub();
-		fields[12] = getErrorDelete();
+		fields[6] = getInitArchive();
+		fields[7] = getFineArchive();
+		fields[8] = getInitIndex();
+		fields[9] = getCheckIndex();
+		fields[10] = getFineIndex();
+		fields[11] = getErrorTrasf();
+		fields[12] = getErrorVal();
+		fields[13] = getErrorDecomp();
+		fields[14] = getErrorCopy();
+		fields[15] = getErrorMove();
+		fields[16] = getErrorPub();
+		fields[17] = getErrorDelete();
+		fields[18] = getErrorArchive();
+		fields[19] = getErrorIndex();
 		sf.setFields(fields);
 		this.setContentWidget(sf);
 	}
@@ -187,8 +201,130 @@ public class CruscottoPanel extends CaptionPanel {
 			finePublish.setDisabled(true);
 			finePublish.setRequired(true);
 			finePublish.setShowDisabled(false);
+			finePublish.setShowOverIcons(Boolean.TRUE);
 		}
 		return finePublish;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato initPublish
+	 * 
+	 * @return
+	 */
+	public IntegerItem getInitArchive(){
+		if (initArchive ==null){
+			initArchive = new IntegerItem(costanti.initArchive(), costanti.initArchive_title());
+			initArchive.setValue(0);
+			initArchive.setWidth(100);
+			initArchive.setDisabled(true);
+			initArchive.setRequired(true);
+			initArchive.setShowDisabled(false);
+		}
+		return initArchive;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato finePublish
+	 * 
+	 * @return
+	 */
+	public IntegerItem getFineArchive(){
+		if (fineArchive ==null){
+			fineArchive = new IntegerItem(costanti.fineArchive(), costanti.fineArchive_title());
+			fineArchive.setValue(0);
+			fineArchive.setWidth(100);
+			fineArchive.setDisabled(true);
+			fineArchive.setRequired(true);
+			fineArchive.setShowDisabled(false);
+		}
+		return fineArchive;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato errorTrasf
+	 * 
+	 * @return
+	 */
+	public IntegerItem getErrorArchive(){
+		if (errorArchive ==null){
+			errorArchive = new IntegerItem(costanti.errorArchive(), costanti.errorArchive_title());
+			errorArchive.setValue(0);
+			errorArchive.setWidth(100);
+			errorArchive.setDisabled(true);
+			errorArchive.setRequired(true);
+			errorArchive.setShowDisabled(false);
+		}
+		return errorArchive;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato initPublish
+	 * 
+	 * @return
+	 */
+	public IntegerItem getInitIndex(){
+		if (initIndex ==null){
+			initIndex = new IntegerItem(costanti.initIndex(), costanti.initIndex_title());
+			initIndex.setValue(0);
+			initIndex.setWidth(100);
+			initIndex.setDisabled(true);
+			initIndex.setRequired(true);
+			initIndex.setShowDisabled(false);
+			initIndex.setShowOverIcons(Boolean.TRUE);
+			initIndex.setMask("###.###");
+		}
+		return initIndex;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato finePublish
+	 * 
+	 * @return
+	 */
+	public IntegerItem getFineIndex(){
+		if (fineIndex ==null){
+			fineIndex = new IntegerItem(costanti.fineIndex(), costanti.fineIndex_title());
+			fineIndex.setValue(0);
+			fineIndex.setWidth(100);
+			fineIndex.setDisabled(true);
+			fineIndex.setRequired(true);
+			fineIndex.setShowDisabled(false);
+		}
+		return fineIndex;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato errorTrasf
+	 * 
+	 * @return
+	 */
+	public IntegerItem getCheckIndex(){
+		if (checkIndex ==null){
+			checkIndex = new IntegerItem(costanti.checkIndex(), costanti.checkIndex_title());
+			checkIndex.setValue(0);
+			checkIndex.setWidth(100);
+			checkIndex.setDisabled(true);
+			checkIndex.setRequired(true);
+			checkIndex.setShowDisabled(false);
+		}
+		return checkIndex;
+	}
+
+	/**
+	 * Disegno il campo per la visualizzazione del numero di oggetti nello stato errorTrasf
+	 * 
+	 * @return
+	 */
+	public IntegerItem getErrorIndex(){
+		if (errorIndex ==null){
+			errorIndex = new IntegerItem(costanti.errorIndex(), costanti.errorIndex_title());
+			errorIndex.setValue(0);
+			errorIndex.setWidth(100);
+			errorIndex.setDisabled(true);
+			errorIndex.setRequired(true);
+			errorIndex.setShowDisabled(false);
+		}
+		return errorIndex;
 	}
 
 	/**
@@ -358,6 +494,11 @@ class CruscottoServiceResult implements AsyncCallback<TreeMap<String, Integer>>{
 		setIntValue(parent.getFineValid(),result.get("FINEVALID"),"tbGiallo");
 		setIntValue(parent.getInitPublish(),result.get("INITPUBLISH"),"tbArancione");
 		setIntValue(parent.getFinePublish(),result.get("FINEPUBLISH"),"tbVerde");
+		setIntValue(parent.getInitArchive(),result.get("INITARCHIVE"),"tbArancione");
+		setIntValue(parent.getFineArchive(),result.get("FINEARCHIVE"),"tbVerde");
+		setIntValue(parent.getInitIndex(),result.get("INITINDEX"),"tbArancione");
+		setIntValue(parent.getCheckIndex(),result.get("CHECKINDEX"),"tbArancione");
+		setIntValue(parent.getFineIndex(),result.get("FINEINDEX"),"tbVerde");
 		setIntValue(parent.getErrorTrasf(),result.get("ERRORTRASF"),"tbRosso");
 		setIntValue(parent.getErrorVal(),result.get("ERRORVAL"),"tbRosso");
 		setIntValue(parent.getErrorDecomp(),result.get("ERRORDECOMP"),"tbRosso");
@@ -365,6 +506,8 @@ class CruscottoServiceResult implements AsyncCallback<TreeMap<String, Integer>>{
 		setIntValue(parent.getErrorMove(),result.get("ERRORMOVE"),"tbRosso");
 		setIntValue(parent.getErrorPub(),result.get("ERRORPUB"),"tbRosso");
 		setIntValue(parent.getErrorDelete(),result.get("ERRORDELETE"),"tbRosso");
+		setIntValue(parent.getErrorArchive(),result.get("ERRORARCHIVE"),"tbRosso");
+		setIntValue(parent.getErrorIndex(),result.get("ERRORINDEX"),"tbRosso");
 	}
 
 	private void setIntValue(IntegerItem campo, Integer value, String style){
