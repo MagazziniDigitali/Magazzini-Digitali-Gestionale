@@ -44,6 +44,9 @@ public class index implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		Window.alert("Ciao");
+	}
+	public void onModuleLoad_old() {
 
 		
 		center = RootPanel.get("center");
@@ -53,6 +56,7 @@ public class index implements EntryPoint {
 		messaggi = GWT.create(IndexMessages.class);
 		
 		idIstituto = Window.Location.getParameter("idIstituto");
+		Window.alert("Ciao");
 		if (idIstituto != null && !idIstituto.equals("")){
 			cruscottoService.checkIstituto(idIstituto, new AsyncCallback<TreeMap<String,Object>>() {
 				

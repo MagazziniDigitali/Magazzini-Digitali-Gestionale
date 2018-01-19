@@ -27,6 +27,7 @@
   <extend-property name="locale" values="it"/>
   <!-- English language, independent of country -->
   <extend-property name="locale" values="en"/>
+  <set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
   
   <inherits name='com.google.gwt.user.theme.standard.Standard'/> 
   <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> 
